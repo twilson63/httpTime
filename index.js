@@ -6,15 +6,15 @@
 // 
 // es.pipeline(
 //   req,
-//   httpTime.start(req),
+//   ht.start(req),
 //   ...
-//   httpTime.stop(req),
+//   ht.stop(req),
 //   res
 // );
 //
 var es = require('event-stream');
 
-// httpTime.start(req)
+// ht.start(req)
 exports.start = function(obj) {
   return es.map(function(data, cb) {
     obj.label = (new Date()).toString() + '-' + process.hrtime().join('-');
@@ -23,7 +23,7 @@ exports.start = function(obj) {
   });
 }
 
-// httpTime.stop(req)
+// ht.stop(req)
 exports.stop = function(obj) {
   return es.map(function(data, cb) {
     if(obj.label) { console.timeEnd(obj.label); }

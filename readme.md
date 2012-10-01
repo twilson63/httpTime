@@ -9,13 +9,13 @@ streams to capture and log the time of the request.
 
 ``` js
 var http = require('http'),
-  httpTime = require('httpTime');
+  ht = require('http-time');
 
 http.createServer(function(req,res) {
   req
-    .pipe(httpTime.start(req))
+    .pipe(ht.start(req))
     .pipe(...)
-    .pipe(httpTime.stop(req))
+    .pipe(ht.stop(req))
     .pipe(res);
 }).listen(3000);
 ```
@@ -24,14 +24,14 @@ or with event-stream
 ``` js
 var http = require('http'),
   es = require('event-stream'),
-  httpTime = require('httpTime');
+  ht = require('http-time');
 
 http.createServer(function(req,res) {
   es.pipeline(
     req,
-    httpTime.start(req),
+    ht.start(req),
     ...,
-    httpTime.stop(req),
+    ht.stop(req),
     res
   );
 }).listen(3000);
