@@ -26,7 +26,7 @@ exports.start = function(obj) {
 // httpTime.stop(req)
 exports.stop = function(obj) {
   return es.map(function(data, cb) {
-    console.timeEnd(obj.label);
+    if(obj.label) { console.timeEnd(obj.label); }
     cb(null, data);
   });
 }
